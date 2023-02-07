@@ -7,6 +7,7 @@ public class WeaponChange : MonoBehaviour
     public GameObject Ak47;
     public GameObject Makarov;
     public GameObject heal;
+    public GameObject machete;
     public Animator akAnimator;
     public Animator makarovAnimator;
     public RaiseTheItem raise;
@@ -28,6 +29,7 @@ public class WeaponChange : MonoBehaviour
             Ak47.SetActive(true);
             Makarov.SetActive(false);
             heal.SetActive(false);
+            machete.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -35,8 +37,9 @@ public class WeaponChange : MonoBehaviour
             Ak47.SetActive(false);
             Makarov.SetActive(true);
             heal.SetActive(false);
+            machete.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             if(raise.quantityHeal > 0)
             {
@@ -44,12 +47,20 @@ public class WeaponChange : MonoBehaviour
                 Ak47.SetActive(false);
                 Makarov.SetActive(false);
                 heal.SetActive(true);
+                machete.SetActive(false);
             }
             else
             {
                 return;
             }
-            
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            //akAnimator.SetTrigger("AkHide");
+            Ak47.SetActive(false);
+            Makarov.SetActive(false);
+            heal.SetActive(false);
+            machete.SetActive(true);
         }
     }
 }
