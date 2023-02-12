@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class BulletController : MonoBehaviour
 {
@@ -16,27 +18,50 @@ public class BulletController : MonoBehaviour
     public Camera _cam;
     public Animator animator;
     public Animator animatorAK47;
+    public Animator akReloadAnim;
     public Animator animatorMakarov;
     private float nextFire = 0f;
     public GameObject hitEffect;
     [SerializeField] int weaponDamage;
+    public int patronsCountMax = 30;
+    public int patronsCountCurrent;
+    public int StoreMachineMax = 10;
+    public int StoreMachineCurrent;
+    public bool isReolad = true;
+    public bool isCanShoot = true;
+    public Text patronsText;
+    public Text StoresText;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        patronsCountCurrent = patronsCountMax;
+        StoreMachineCurrent = StoreMachineMax;
     }
 
     // Update is called once per frame
     void Update()
     {
+        patronsText.text = patronsCountCurrent.ToString();
+        StoresText.text = StoreMachineCurrent.ToString();
+
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
         {
-            //nextFire = Time.time * 1f / firstRate;
-            Shoot();
-            animator.SetBool("GunShake", true);
-            animatorAK47.SetBool("AkShake", true);
-            animatorMakarov.SetBool("MakarovShake", true);
+            if (patronsCountCurrent > 0)
+            {
+                if(isCanShoot == true)
+                {
+                    //nextFire = Time.time * 1f / firstRate;
+                    Shoot();
+                    patronsCountCurrent--;
+                    animator.SetBool("GunShake", true);
+                    animatorAK47.SetBool("AkShake", true);
+                    animatorMakarov.SetBool("MakarovShake", true);
+                }
+            }
         }
         else
         {
@@ -44,8 +69,35 @@ public class BulletController : MonoBehaviour
             animator.SetBool("GunShake", false);
             animatorMakarov.SetBool("MakarovShake", false);
         }
+
+        if (Input.GetKeyDown(KeyCode.R) || patronsCountCurrent <= 0)
+        {
+            if(StoreMachineCurrent > 0 && patronsCountCurrent < patronsCountMax)
+            {
+                if(isReolad == true)
+                {
+                    akReloadAnim.SetTrigger("Reload");
+                }
+            }
+        }
     }
 
+    public void Reload()
+    {
+        patronsCountCurrent = patronsCountMax;
+        StoreMachineCurrent--;
+    }
+
+    void IsReloadTrue()
+    {
+        isCanShoot = true;
+        isReolad = true;
+    }
+    void IsReloadfalse()
+    {
+        isCanShoot = false;
+        isReolad = false;
+    }
 
     void Shoot()
     {

@@ -5,8 +5,7 @@ using UnityEngine;
 public class TheRadioactiveZone : MonoBehaviour
 {
     public HpSystem hpSysteam;
-    
- 
+    public Animator animator;
     public AudioSource GeigerSource;
 
 
@@ -22,6 +21,7 @@ public class TheRadioactiveZone : MonoBehaviour
         {
             StartCoroutine(ToDamage());
             GeigerSource.Play();
+            animator.SetBool("IsInZone", true);
         }
     }
 
@@ -42,6 +42,7 @@ public class TheRadioactiveZone : MonoBehaviour
         {
             StopAllCoroutines();
             GeigerSource.Stop();
+            animator.SetBool("IsInZone", false);
         }
     }
 
