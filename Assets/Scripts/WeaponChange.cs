@@ -11,6 +11,9 @@ public class WeaponChange : MonoBehaviour
     public Animator akAnimator;
     public Animator makarovAnimator;
     public RaiseTheItem raise;
+    public BulletController blAk;
+    public BulletController blMakarov;
+
 
 
 
@@ -30,6 +33,8 @@ public class WeaponChange : MonoBehaviour
             Makarov.SetActive(false);
             heal.SetActive(false);
             machete.SetActive(false);
+            blAk.isCanShoot = true;
+            blAk.isReolad = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -38,6 +43,8 @@ public class WeaponChange : MonoBehaviour
             Makarov.SetActive(true);
             heal.SetActive(false);
             machete.SetActive(false);
+            blMakarov.isCanShoot = true;
+            blMakarov.isReolad = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {

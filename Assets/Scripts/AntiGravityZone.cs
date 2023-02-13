@@ -13,6 +13,8 @@ public class AntiGravityZone : MonoBehaviour
     public AudioSource _audioSourceEnd;
     public AudioSource _audioSourceNahod;
     public Animator anim;
+    public Animator animator;
+
 
 
 
@@ -30,10 +32,12 @@ public class AntiGravityZone : MonoBehaviour
         _audioSourceStart.Play();
         if (other.gameObject.tag == "Player")
         {
+            
             anim.SetBool("AntiGravityEffect", true);
             playerMoveScript.speed = 5;
             playerMoveScript.runSpeed = 5;
             _audioSourceNahod.Play();
+            animator.SetBool("IsInZone", true);
         }
     }
 
@@ -44,10 +48,13 @@ public class AntiGravityZone : MonoBehaviour
         _audioSourceEnd.Play();
         if (other.gameObject.tag == "Player")
         {
+            
             anim.SetBool("AntiGravityEffect", false);
             playerMoveScript.speed = 15;
             playerMoveScript.runSpeed = 20;
             _audioSourceNahod.Stop();
+            animator.SetBool("IsInZone", false);
+
         }
     }
 

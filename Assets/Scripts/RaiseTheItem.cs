@@ -9,6 +9,9 @@ public class RaiseTheItem : MonoBehaviour
     public bool canPickUp;
     public HealScript healScript;
     public int quantityHeal;
+    public BulletController blAk;
+    public BulletController blMakarov;
+
 
 
     // Start is called before the first frame update
@@ -34,6 +37,24 @@ public class RaiseTheItem : MonoBehaviour
                 else
                 {
                     return;
+                }
+            }
+            if(hit.transform.tag == "PatronsMakarov")
+            {
+                if (blMakarov.StoreMachineCurrent < blMakarov.StoreMachineMax)
+                {
+                    var m = hit.transform.gameObject;
+                    DestroyObject(m);
+                    blMakarov.StoreMachineCurrent++;
+                }
+            }
+            if (hit.transform.tag == "PatronsAk")
+            {
+                if (blAk.StoreMachineCurrent < blAk.StoreMachineMax)
+                {
+                    var m = hit.transform.gameObject;
+                    DestroyObject(m);
+                    blAk.StoreMachineCurrent++;
                 }
             }
         }
