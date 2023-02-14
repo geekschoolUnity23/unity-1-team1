@@ -29,7 +29,8 @@ public class HpSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDie = true;
-            deathAnimator.SetTrigger("Death");
+            deathAnimator.SetBool("Death", true);
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 

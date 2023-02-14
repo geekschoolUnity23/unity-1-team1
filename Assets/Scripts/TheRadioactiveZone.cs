@@ -7,6 +7,7 @@ public class TheRadioactiveZone : MonoBehaviour
     public HpSystem hpSysteam;
     public Animator animator;
     public AudioSource GeigerSource;
+    public bool canDamageInZone = false;
 
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class TheRadioactiveZone : MonoBehaviour
             StartCoroutine(ToDamage());
             GeigerSource.Play();
             animator.SetBool("IsInZone", true);
+            canDamageInZone = true;
         }
     }
 
@@ -43,6 +45,7 @@ public class TheRadioactiveZone : MonoBehaviour
             StopAllCoroutines();
             GeigerSource.Stop();
             animator.SetBool("IsInZone", false);
+            canDamageInZone = false;
         }
     }
 
