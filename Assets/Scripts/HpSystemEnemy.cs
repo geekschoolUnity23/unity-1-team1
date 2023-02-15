@@ -11,6 +11,9 @@ public class HpSystemEnemy : MonoBehaviour
     public Animator animator;
     public AudioClip deathSound;
     public AudioSource damageSource;
+    public bool isMutant;
+    public bool isEnemyOnQuest;
+    public EnemyCounter enemyCounter;
 
     void Start()
     {
@@ -35,6 +38,17 @@ public class HpSystemEnemy : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetTrigger("Death");
+            if(isEnemyOnQuest == true)
+            {
+                if(isMutant == true)
+                {
+                    enemyCounter.MutantPoint();
+                }
+                else
+                {
+                    enemyCounter.MaraderPoint();
+                }
+            }
         }
     }
 

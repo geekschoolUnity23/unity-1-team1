@@ -16,14 +16,20 @@ public class ActTwoMutant : MonoBehaviour
         
     }
 
+    //private IEnumerator ToDamage()
+    //{
+        //colider.SetActive(false);
+        //navMesh.speed -= 20;
+        //yield return new WaitForSeconds(3.0f);
+    //}
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(HpSystemEnemy.currentHealth < 35)
+        if(HpSystemEnemy.currentHealth <= 35)
         {
             //colider.SetActive(true);
-            navMesh.speed = 20;
-
+            navMesh.speed += 40;
         }
     }
 }
