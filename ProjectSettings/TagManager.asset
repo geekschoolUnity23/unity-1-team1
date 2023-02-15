@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Iteam
+  - PatronsAk
+  - PatronsMakarov
+  - CheakPoint
   layers:
   - Default
   - TransparentFX

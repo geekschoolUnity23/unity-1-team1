@@ -10,6 +10,8 @@ public class HpSystem : MonoBehaviour
     public Animator animator;
     public AudioClip deathSound;
     public AudioSource damageSource;
+    public Animator deathAnimator;
+    public bool isDie = false;
 
     void Start()
     {
@@ -26,7 +28,9 @@ public class HpSystem : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            isDie = true;
+            deathAnimator.SetBool("Death", true);
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 

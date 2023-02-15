@@ -11,6 +11,7 @@ public class EnemyMove : MonoBehaviour
     private Vector3 startPosition;
     public int seeDistanse;
     public float attackDistance;
+    public HpSystem hpSystemPlayer;
     
 
 
@@ -28,18 +29,25 @@ public class EnemyMove : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.position) <= seeDistanse)
         {
-            
-            navAgent.destination = player.transform.position;
-            
-
-            if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+            if(hpSystemPlayer.isDie == false)
             {
-                animator.SetBool("isShooting", true);
+                navAgent.destination = player.transform.position;
+
+
+                if (Vector3.Distance(transform.position, player.position) <= attackDistance && hpSystemPlayer.isDie == false)
+                {
+                    animator.SetBool("isShooting", true);
+                }
+                else
+                {
+                    animator.SetBool("isShooting", false);
+                }
             }
             else
             {
-                animator.SetBool("isShooting", false);
+                navAgent.destination = startPosition;
             }
+
         }
         else
         {
