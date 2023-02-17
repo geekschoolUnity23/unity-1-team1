@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Iteam
+  - Quest
   layers:
   - Default
   - TransparentFX

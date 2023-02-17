@@ -11,6 +11,7 @@ public class RaiseTheItem : MonoBehaviour
     public int quantityHeal;
     public BulletController blAk;
     public BulletController blMakarov;
+    public CollectQuest collectQuest;
 
 
 
@@ -56,6 +57,12 @@ public class RaiseTheItem : MonoBehaviour
                     DestroyObject(m);
                     blAk.StoreMachineCurrent++;
                 }
+            }
+            if(hit.transform.tag == "Quest")
+            {
+                var m = hit.transform.gameObject;
+                collectQuest.Collect();
+                DestroyObject(m);
             }
         }
     }
